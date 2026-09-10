@@ -4,6 +4,7 @@ namespace Database\Seeders;
 
 use App\Models\Evento;
 use App\Models\Pergunta;
+use App\Models\User;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Carbon;
 
@@ -11,6 +12,8 @@ class PerguntaSeeder extends Seeder
 {
     public function run(): void
     {
+        $user = User::factory()->create();
+
         $eventoPrincipal = Evento::create([
             'titulo'      => 'Palestra Principal: O Futuro da Computação em Nuvem',
             'descricao'   => 'Evento corporativo de tecnologia com 500 participantes simultâneos.',
@@ -46,6 +49,7 @@ class PerguntaSeeder extends Seeder
         for ($j = 1; $j <= 5; $j++) {
             Pergunta::create([
                 'evento_id'  => $eventoSecundario->id,
+                'user_id' => $user->id,
                 'texto'      => "Pergunta do workshop #{$j}: O que é o Service Container?",
                 'status'     => 'aprovado',
             ]);
