@@ -27,8 +27,8 @@ class EventoController extends Controller
     {
         $evento = Evento::find($id);
 
-        // ⚠ BUG LEGADO: Carrega TODOS os registros da tabela no PHP
         $perguntas = Pergunta::where('evento_id', $id)
+        ->where('is_public', 'true')
         ->with('user')
         ->orderBy('created_at', 'desc')
         ->paginate(10);

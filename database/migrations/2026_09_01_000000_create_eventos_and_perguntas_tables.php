@@ -20,6 +20,7 @@ return new class extends Migration
             $table->id();
             $table->foreignId('evento_id')->constrained('eventos')->onDelete('cascade');
             $table->foreignId('user_id')->nullable()->constrained('users')->onDelete('cascade');
+            $table->boolean('is_public')->default(false);
             $table->text('texto');
             $table->string('status')->default('pendente');
             $table->timestamps();
